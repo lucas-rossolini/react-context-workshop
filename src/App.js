@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useContext, useEffect } from "react";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import ProverbsPage from "./components/ProverbsPage";
+import SettingsPage from "./components/SettingsPage";
+import { CurrentLanguageContextProvider } from "./contexts/LanguagesContext";
 
 function App() {
+/*   const [currentLanguage, setCurrentLanguage] = useState("en");*/
+
+  // TODO : instanciate the two contexts providers here
+  // TODO : for exemple, you should pass proverbs, setProverbs and fetchProverbs to the ProverbsContext.Provider's value prop
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CurrentLanguageContextProvider>
+      <Router>
+        <Switch>
+          <Route path="/" exact component={ProverbsPage} />
+          <Route path="/settings" component={SettingsPage} />
+        </Switch>
+      </Router>
+    </CurrentLanguageContextProvider>
   );
 }
 
